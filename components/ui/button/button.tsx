@@ -1,35 +1,35 @@
 'use client';
 
 import * as React from 'react';
+
+import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { type VariantProps, cva } from 'class-variance-authority';
-
 import { Loader } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md active:translate-y-[1px] text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-500',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:bg-gray-500 disabled:opacity-50',
   {
+    defaultVariants: {
+      size: 'default',
+      variant: 'default'
+    },
     variants: {
+      size: {
+        default: 'h-10 px-4 py-2',
+        icon: 'size-10',
+        lg: 'h-11 rounded-md px-8',
+        sm: 'h-9 rounded-md px-3'
+      },
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border border-primary text-primary bg-transparent hover:bg-secondary',
-        secondary: 'bg-secondary text-primary hover:bg-secondary/50',
         ghost: 'hover:bg-secondary hover:text-secondary-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-      },
-      size: {
-        default: 'h-10 px-4 py-2',
-        sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8',
-        icon: 'h-10 w-10',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
+        outline: 'border border-primary bg-transparent text-primary hover:bg-secondary',
+        secondary: 'bg-secondary text-primary hover:bg-secondary/50'
+      }
+    }
   }
 );
 
@@ -41,20 +41,22 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, children, disabled, loading, ...props }, ref) => {
+  ({ asChild = false, children, className, disabled, loading, size, variant, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
+
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ className, size, variant }))}
         disabled={disabled || loading}
         ref={ref}
         {...props}
       >
-        {!loading ? children : <Loader className="w-5 h-5 animate-spin" />}
+        {!loading ? children : <Loader className={'size-5 animate-spin'} />}
       </Comp>
     );
   }
 );
+
 Button.displayName = 'Button';
 
 export { Button, buttonVariants };

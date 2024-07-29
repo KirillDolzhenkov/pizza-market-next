@@ -1,15 +1,17 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
+
 import { Container } from '@/components/shared/container/container';
-import Image from 'next/image';
-import Logo from '@/public/fcLogo.svg';
 import { Button } from '@/components/ui';
+import { cn } from '@/lib/utils';
+import Logo from '@/public/fcLogo.svg';
+import Image from 'next/image';
 type Props = {
   className?: string;
 };
 
 export const Header = (props: Props) => {
   const { className } = props;
+
   return (
     <div className={cn('border border-b', className)}>
       <Container className={'flex h-16 items-center justify-between'}>
