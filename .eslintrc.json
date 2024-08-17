@@ -88,7 +88,7 @@
     "react/display-name": "off",
     "react/jsx-boolean-value": ["error"],
     "react/jsx-curly-brace-presence": [
-      "error",
+      "off",
       { "children": "ignore", "propElementValues": "always", "props": "always" }
     ],
     "react/jsx-fragments": ["error"],
