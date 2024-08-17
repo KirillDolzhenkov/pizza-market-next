@@ -1,6 +1,8 @@
 export { CartButton } from './cartButton/cartButton';
 export { Categories } from './categories/categories';
 export { Container } from './container/container';
+export { FilterCheckBox } from './filterCheckBox/filterCheckBox';
+export { Filters } from './filters/filters';
 export { Header } from './header/header';
 export { ProfileButton } from './profileButton/profileButton';
 export { SortPopup } from './sortPopup/sortPopup';
