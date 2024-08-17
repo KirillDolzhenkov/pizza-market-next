@@ -1,3 +1,12 @@
+import { Categories, Container, SortPopup, Title, TopBar } from '@/components/shared';
+
 export default function Home() {
-  return <h1>Главная</h1>;
+  return (
+    <>
+      <Container className="mt-10">
+        <Title className="font-extrabold" size="lg" text="Все пиццы" />
+      </Container>
+      <TopBar />
+    </>
+  );
 }
